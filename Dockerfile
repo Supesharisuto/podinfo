@@ -11,11 +11,11 @@ COPY . .
 RUN go mod download
 
 RUN CGO_ENABLED=0 go build -ldflags "-s -w \
-    -X github.com/stefanprodan/podinfo/pkg/version.REVISION=${REVISION}" \
+    -X github.com/Supesharisuto/podinfo/pkg/version.REVISION=${REVISION}" \
     -a -o bin/podinfo cmd/podinfo/*
 
 RUN CGO_ENABLED=0 go build -ldflags "-s -w \
-    -X github.com/stefanprodan/podinfo/pkg/version.REVISION=${REVISION}" \
+    -X github.com/Supesharisuto/podinfo/pkg/version.REVISION=${REVISION}" \
     -a -o bin/podcli cmd/podcli/*
 
 FROM alpine:3.12
@@ -26,8 +26,8 @@ ARG REVISION
 
 LABEL maintainer="stefanprodan" \
   org.opencontainers.image.created=$BUILD_DATE \
-  org.opencontainers.image.url="https://github.com/stefanprodan/podinfo" \
-  org.opencontainers.image.source="https://github.com/stefanprodan/podinfo" \
+  org.opencontainers.image.url="https://github.com/Supesharisuto/podinfo" \
+  org.opencontainers.image.source="https://github.com/Supesharisuto/podinfo" \
   org.opencontainers.image.version=$VERSION \
   org.opencontainers.image.revision=$REVISION \
   org.opencontainers.image.vendor="stefanprodan" \

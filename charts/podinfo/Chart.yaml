@@ -4,9 +4,9 @@ appVersion: 4.0.6
 name: podinfo
 engine: gotpl
 description: Podinfo Helm chart for Kubernetes
-home: https://github.com/stefanprodan/podinfo
+home: https://github.com/Supesharisuto/podinfo
 maintainers:
-- email: stefanprodan@users.noreply.github.com
-  name: stefanprodan
+- email: Supesharisuto@users.noreply.github.com
+  name: Supesharisuto
 sources:
-- https://github.com/stefanprodan/podinfo
+- https://github.com/Supesharisuto/podinfo

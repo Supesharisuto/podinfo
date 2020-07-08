@@ -31,12 +31,12 @@ jobs:
             exit 1
           fi
       - name: Validate Helm chart
-        uses: stefanprodan/kube-tools@v1
+        uses: Supesharisuto/kube-tools@v1
         with:
           command: |
             helmv3 template ./charts/podinfo | kubeval --strict
       - name: Validate kustomization
-        uses: stefanprodan/kube-tools@v1
+        uses: Supesharisuto/kube-tools@v1
         with:
           command: |
             kustomize build ./kustomize | kubeval --strict

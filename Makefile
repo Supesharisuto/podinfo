@@ -4,23 +4,23 @@
 
 TAG?=latest
 NAME:=podinfo
-DOCKER_REPOSITORY:=stefanprodan
+DOCKER_REPOSITORY:=anthony2020
 DOCKER_IMAGE_NAME:=$(DOCKER_REPOSITORY)/$(NAME)
 GIT_COMMIT:=$(shell git describe --dirty --always)
 VERSION:=$(shell grep 'VERSION' pkg/version/version.go | awk '{ print $$4 }' | tr -d '"')
 EXTRA_RUN_ARGS?=
 
 run:
-	go run -ldflags "-s -w -X github.com/stefanprodan/podinfo/pkg/version.REVISION=$(GIT_COMMIT)" cmd/podinfo/* \
+	go run -ldflags "-s -w -X github.com/supesharisuto/podinfo/pkg/version.REVISION=$(GIT_COMMIT)" cmd/podinfo/* \
 	--level=debug --grpc-port=9999 --backend-url=https://httpbin.org/status/401 --backend-url=https://httpbin.org/status/500 \
-	--ui-logo=https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif $(EXTRA_RUN_ARGS)
+	--ui-logo=https://raw.githubusercontent.com/supesharisuto/podinfo/gh-pages/cuddle_clap.gif $(EXTRA_RUN_ARGS)
 
 test:
 	go test -v -race ./...
 
 build:
-	GIT_COMMIT=$$(git rev-list -1 HEAD) && CGO_ENABLED=0 go build  -ldflags "-s -w -X github.com/stefanprodan/podinfo/pkg/version.REVISION=$(GIT_COMMIT)" -a -o ./bin/podinfo ./cmd/podinfo/*
-	GIT_COMMIT=$$(git rev-list -1 HEAD) && CGO_ENABLED=0 go build  -ldflags "-s -w -X github.com/stefanprodan/podinfo/pkg/version.REVISION=$(GIT_COMMIT)" -a -o ./bin/podcli ./cmd/podcli/*
+	GIT_COMMIT=$$(git rev-list -1 HEAD) && CGO_ENABLED=0 go build  -ldflags "-s -w -X github.com/supesharisuto/podinfo/pkg/version.REVISION=$(GIT_COMMIT)" -a -o ./bin/podinfo ./cmd/podinfo/*
+	GIT_COMMIT=$$(git rev-list -1 HEAD) && CGO_ENABLED=0 go build  -ldflags "-s -w -X github.com/supesharisuto/podinfo/pkg/version.REVISION=$(GIT_COMMIT)" -a -o ./bin/podcli ./cmd/podcli/*
 
 fmt:
 	gofmt -l -s -w ./
