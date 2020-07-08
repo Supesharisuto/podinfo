@@ -50,10 +50,10 @@ push-container:
 	docker tag $(DOCKER_IMAGE_NAME):$(VERSION) $(DOCKER_IMAGE_NAME):latest
 	docker push $(DOCKER_IMAGE_NAME):$(VERSION)
 	docker push $(DOCKER_IMAGE_NAME):latest
-	docker tag $(DOCKER_IMAGE_NAME):$(VERSION) quay.io/$(DOCKER_IMAGE_NAME):$(VERSION)
-	docker tag $(DOCKER_IMAGE_NAME):$(VERSION) quay.io/$(DOCKER_IMAGE_NAME):latest
-	docker push quay.io/$(DOCKER_IMAGE_NAME):$(VERSION)
-	docker push quay.io/$(DOCKER_IMAGE_NAME):latest
+#	docker tag $(DOCKER_IMAGE_NAME):$(VERSION) quay.io/$(DOCKER_IMAGE_NAME):$(VERSION)
+#	docker tag $(DOCKER_IMAGE_NAME):$(VERSION) quay.io/$(DOCKER_IMAGE_NAME):latest
+#	docker push quay.io/$(DOCKER_IMAGE_NAME):$(VERSION)
+#	docker push quay.io/$(DOCKER_IMAGE_NAME):latest
 
 version-set:
 	@next="$(TAG)" && \
