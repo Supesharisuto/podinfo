@@ -1,0 +1,19 @@
+apiVersion: openfaas.com/v1alpha2
+kind: Function
+metadata:
+  name: nodeinfo
+  namespace: openfaas-fn
+spec:
+  name: nodeinfo
+  image: functions/nodeinfo:latest
+  labels:
+    com.openfaas.scale.min: "2"
+    com.openfaas.scale.max: "15"
+  environment:
+    write_debug: "true"
+  limits:
+    cpu: "200m"
+    memory: "1Gi"
+  requests:
+    cpu: "10m"
+    memory: "128Mi"
