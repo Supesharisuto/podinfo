@@ -1,13 +1,13 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "podinfo.fullname" . -}}
+{{- $fullName := include "microservice-template.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app: {{ template "podinfo.name" . }}
-    chart: {{ template "podinfo.chart" . }}
+    app: {{ template "microservice-template.name" . }}
+    chart: {{ template "microservice-template.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}

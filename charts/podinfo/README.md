@@ -1,6 +1,6 @@
-# Podinfo
+# Microservice-Template
 
-Podinfo is a tiny web application made with Go 
+Microservice-Template is a tiny web application made with Go 
 that showcases best practices of running microservices in Kubernetes.
 
 ## Installing the Chart
@@ -8,12 +8,12 @@ that showcases best practices of running microservices in Kubernetes.
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm repo add podinfo https://Supesharisuto.github.io/podinfo
+$ helm repo add microservice-template https://Supesharisuto.github.io/microservice-template
 
-$ helm upgrade -i my-release podinfo/podinfo 
+$ helm upgrade -i my-release microservice-template/microservice-template 
 ```
 
-The command deploys podinfo on the Kubernetes cluster in the default namespace.
+The command deploys microservice-template on the Kubernetes cluster in the default namespace.
 The [configuration](#configuration) section lists the parameters that can be configured during installation.
 
 ## Uninstalling the Chart
@@ -28,7 +28,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-The following tables lists the configurable parameters of the podinfo chart and their default values.
+The following tables lists the configurable parameters of the microservice-template chart and their default values.
 
 Parameter | Default | Description
 --- | --- | ---
@@ -48,7 +48,7 @@ Parameter | Default | Description
 `faults.testFail` | `false` | When set, a helm test is included which always fails
 `faults.testTimeout` | `false` | When set, a helm test is included which always times out
 `h2c.enabled` | `false` | Allow upgrading to h2c
-`image.repository` | `Supesharisuto/podinfo` | Image repository
+`image.repository` | `Supesharisuto/microservice-template` | Image repository
 `image.tag` | `<VERSION>` | Image tag
 `image.pullPolicy` | `IfNotPresent` | Image pull policy
 `service.enabled` | `true` | Create a Kubernetes Service, should be disabled when using [Flagger](https://flagger.app)
@@ -57,7 +57,7 @@ Parameter | Default | Description
 `service.httpPort` | `9898` | Container HTTP port
 `service.externalPort` | `9898` | ClusterIP HTTP port
 `service.grpcPort` | `9999` | ClusterIP gPRC port
-`service.grpcService` | `podinfo` | gPRC service name
+`service.grpcService` | `microservice-template` | gPRC service name
 `service.nodePort` | `31198` | NodePort for the HTTP endpoint
 `hpa.enabled` | `false` | Enables the Kubernetes HPA
 `hpa.maxReplicas` | `10` | Maximum amount of pods
@@ -86,21 +86,21 @@ Parameter | Default | Description
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
-$ helm install my-release podinfo/podinfo \
+$ helm install my-release microservice-template/microservice-template \
   --set=serviceMonitor.enabled=true,serviceMonitor.interval=5s
 ```
 
 To add custom annotations you need to escape the annotation key string:
 
 ```console
-$ helm upgrade -i my-release podinfo/podinfo \
+$ helm upgrade -i my-release microservice-template/microservice-template \
 --set podAnnotations."appmesh\.k8s\.aws\/preview"=enabled
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install my-release podinfo/podinfo -f values.yaml
+$ helm install my-release microservice-template/microservice-template -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)

@@ -22,8 +22,8 @@ jobs:
       - name: Build container image
         run: |
           GIT_COMMIT=$(git rev-list -1 HEAD) && \
-          docker build -t test/podinfo:latest --build-arg "REVISION=${GIT_COMMIT}" .
-          kind load docker-image test/podinfo:latest
+          docker build -t test/microservice-template:latest --build-arg "REVISION=${GIT_COMMIT}" .
+          kind load docker-image test/microservice-template:latest
       - name: Setup Helm
         uses: ./.github/actions/helm
         with:
@@ -36,15 +36,15 @@ jobs:
           helm init --service-account tiller --upgrade --wait
       - name: Deploy
         run: |
-          helm upgrade -i podinfo ./charts/podinfo \
-          --set image.repository=test/podinfo \
+          helm upgrade -i microservice-template ./charts/microservice-template \
+          --set image.repository=test/microservice-template \
           --set image.tag=latest \
           --namespace=default
       - name: Run integration tests
         run: |
-          kubectl rollout status deployment/podinfo --timeout=1m
-          helm test podinfo
+          kubectl rollout status deployment/microservice-template --timeout=1m
+          helm test microservice-template
       - name: Debug failure
         if: failure()
         run: |
-          kubectl logs -l app=podinfo || true
+          kubectl logs -l app=microservice-template || true

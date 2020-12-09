@@ -59,7 +59,7 @@ var checkCertCmd = &cobra.Command{
 var checkgRPCCmd = &cobra.Command{
 	Use:     `grpc [address]`,
 	Short:   "gRPC health check",
-	Example: `  check grpc localhost:8080 --service=podinfo --retry=1 --delay=2s --timeout=2s`,
+	Example: `  check grpc localhost:8080 --service=microservice-template --retry=1 --delay=2s --timeout=2s`,
 	RunE:    runCheckgPRC,
 }
 

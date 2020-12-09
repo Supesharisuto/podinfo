@@ -2,7 +2,7 @@
 apiVersion: linkerd.io/v1alpha2
 kind: ServiceProfile
 metadata:
-  name: {{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+  name: {{ template "microservice-template.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
 spec:
   routes:
     - condition:

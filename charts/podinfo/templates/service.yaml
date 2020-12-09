@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "podinfo.fullname" . }}
+  name: {{ template "microservice-template.fullname" . }}
   labels:
-    app: {{ template "podinfo.name" . }}
-    chart: {{ template "podinfo.chart" . }}
+    app: {{ template "microservice-template.name" . }}
+    chart: {{ template "microservice-template.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -25,5 +25,5 @@ spec:
       name: grpc
     {{- end }}
   selector:
-    app: {{ template "podinfo.fullname" . }}
+    app: {{ template "microservice-template.fullname" . }}
 {{- end }}

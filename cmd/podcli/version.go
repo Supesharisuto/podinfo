@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Supesharisuto/podinfo/pkg/version"
+	"github.com/Supesharisuto/microservice-template/pkg/version"
 	"github.com/spf13/cobra"
 )
 

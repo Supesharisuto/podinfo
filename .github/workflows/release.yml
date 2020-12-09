@@ -18,15 +18,15 @@ jobs:
             --build-arg "REVISION=${GITHUB_SHA}" \
             --build-arg "VERSION=${GITHUB_REF#refs/tags/}" \
             --build-arg "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-            --tag "docker.io/Supesharisuto/podinfo:${GITHUB_REF#refs/tags/}" \
-            --tag "docker.io/Supesharisuto/podinfo:latest" \
+            --tag "docker.io/Supesharisuto/microservice-template:${GITHUB_REF#refs/tags/}" \
+            --tag "docker.io/Supesharisuto/microservice-template:latest" \
             --file Dockerfile .
       - name: Publish base image
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: Supesharisuto/podinfo-base
+          repository: Supesharisuto/microservice-template-base
           tags: latest
       - name: Publish helm chart
         uses: Supesharisuto/helm-gh-pages@master
@@ -36,7 +36,7 @@ jobs:
       - name: Generate release notes
         run: |
           echo 'CHANGELOG' > /tmp/release.txt
-          github-release-notes -org Supesharisuto -repo podinfo -since-latest-release >> /tmp/release.txt
+          github-release-notes -org Supesharisuto -repo microservice-template -since-latest-release >> /tmp/release.txt
       - name: Publish release
         uses: goreleaser/goreleaser-action@v1
         with:

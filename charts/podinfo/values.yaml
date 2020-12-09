@@ -1,8 +1,8 @@
-# Default values for podinfo.
+# Default values for microservice-template.
 
 replicaCount: 1
 logLevel: info
-backend: #http://backend-podinfo:9898/echo
+backend: #http://backend-microservice-template:9898/echo
 backends: []
 
 ui:
@@ -22,7 +22,7 @@ h2c:
   enabled: false
 
 image:
-  repository: Supesharisuto/podinfo
+  repository: Supesharisuto/microservice-template
   tag: 4.0.6
   pullPolicy: IfNotPresent
 
@@ -33,7 +33,7 @@ service:
   httpPort: 9898
   externalPort: 9898
   grpcPort: 9999
-  grpcService: podinfo
+  grpcService: microservice-template
   nodePort: 31198
 
 # metrics-server add-on required
@@ -77,7 +77,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   path: /*
   hosts: []
-#    - podinfo.local
+#    - microservice-template.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

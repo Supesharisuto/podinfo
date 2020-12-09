@@ -30,14 +30,14 @@ var codeCmd = &cobra.Command{
 
 var codeInitCmd = &cobra.Command{
 	Use:     `init [name]`,
-	Short:   "initialize podinfo code repo",
+	Short:   "initialize microservice-template code repo",
 	Example: `  code init demo-app --version=v1.2.0 --git-user=Supesharisuto`,
 	RunE:    runCodeInit,
 }
 
 func init() {
 	codeInitCmd.Flags().StringVar(&codeGitUser, "git-user", "", "GitHub user or org")
-	codeInitCmd.Flags().StringVar(&codeVersion, "version", "master", "podinfo repo tag or branch name")
+	codeInitCmd.Flags().StringVar(&codeVersion, "version", "master", "microservice-template repo tag or branch name")
 	codeInitCmd.Flags().StringVar(&codeProjectPath, "path", ".", "destination repo")
 
 	codeCmd.AddCommand(codeInitCmd)
@@ -62,10 +62,10 @@ func runCodeInit(cmd *cobra.Command, args []string) error {
 		os.Exit(1)
 	}
 
-	tmpPath := "/tmp/k8s-podinfo"
-	versionName := fmt.Sprintf("k8s-podinfo-%s", codeVersion)
+	tmpPath := "/tmp/k8s-microservice-template"
+	versionName := fmt.Sprintf("k8s-microservice-template-%s", codeVersion)
 
-	downloadURL := fmt.Sprintf("https://github.com/Supesharisuto/podinfo/archive/%s.zip", codeVersion)
+	downloadURL := fmt.Sprintf("https://github.com/Supesharisuto/microservice-template/archive/%s.zip", codeVersion)
 	client := &getter.Client{
 		Src:  downloadURL,
 		Dst:  tmpPath,
@@ -80,7 +80,7 @@ func runCodeInit(cmd *cobra.Command, args []string) error {
 		os.Exit(1)
 	}
 
-	pkgFrom := "github.com/Supesharisuto/podinfo"
+	pkgFrom := "github.com/Supesharisuto/microservice-template"
 	pkgTo := fmt.Sprintf("github.com/%s/%s", codeGitUser, codeProjectName)
 
 	if err := replaceImports(tmpPath, pkgFrom, pkgTo); err != nil {
@@ -123,7 +123,7 @@ func runCodeInit(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	projFrom := "Supesharisuto/podinfo"
+	projFrom := "Supesharisuto/microservice-template"
 	projTo := fmt.Sprintf("%s/%s", codeGitUser, codeProjectName)
 
 	makeFiles := []string{"Makefile.gh", "Dockerfile.gh"}

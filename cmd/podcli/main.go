@@ -12,9 +12,9 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "podcli",
-	Short: "podinfo command line",
+	Short: "microservice-template command line",
 	Long: `
-podinfo command line utilities`,
+microservice-template command line utilities`,
 }
 
 var (

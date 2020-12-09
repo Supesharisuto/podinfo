@@ -1,12 +1,12 @@
-# podinfo
+# microservice-template
 
-[![e2e](https://github.com/Supesharisuto/podinfo/workflows/e2e/badge.svg)](https://github.com/Supesharisuto/podinfo/blob/master/.github/workflows/e2e.yml)
-[![test](https://github.com/Supesharisuto/podinfo/workflows/test/badge.svg)](https://github.com/Supesharisuto/podinfo/blob/master/.github/workflows/test.yml)
-[![cve-scan](https://github.com/Supesharisuto/podinfo/workflows/cve-scan/badge.svg)](https://github.com/Supesharisuto/podinfo/blob/master/.github/workflows/cve-scan.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Supesharisuto/podinfo)](https://goreportcard.com/report/github.com/Supesharisuto/podinfo)
-[![Docker Pulls](https://img.shields.io/docker/pulls/Supesharisuto/podinfo)](https://hub.docker.com/r/Supesharisuto/podinfo)
+[![e2e](https://github.com/Supesharisuto/microservice-template/workflows/e2e/badge.svg)](https://github.com/Supesharisuto/microservice-template/blob/master/.github/workflows/e2e.yml)
+[![test](https://github.com/Supesharisuto/microservice-template/workflows/test/badge.svg)](https://github.com/Supesharisuto/microservice-template/blob/master/.github/workflows/test.yml)
+[![cve-scan](https://github.com/Supesharisuto/microservice-template/workflows/cve-scan/badge.svg)](https://github.com/Supesharisuto/microservice-template/blob/master/.github/workflows/cve-scan.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Supesharisuto/microservice-template)](https://goreportcard.com/report/github.com/Supesharisuto/microservice-template)
+[![Docker Pulls](https://img.shields.io/docker/pulls/Supesharisuto/microservice-template)](https://hub.docker.com/r/Supesharisuto/microservice-template)
 
-Podinfo is a tiny web application made with Go that showcases best practices of running microservices in Kubernetes.
+Microservice-Template is a tiny web application made with Go that showcases best practices of running microservices in Kubernetes.
 
 Specifications:
 
@@ -29,7 +29,7 @@ Specifications:
 Web API:
 
 * `GET /` prints runtime information
-* `GET /version` prints podinfo version and git commit hash 
+* `GET /version` prints microservice-template version and git commit hash 
 * `GET /metrics` return HTTP requests duration and Go runtime metrics
 * `GET /healthz` used by Kubernetes liveness probe
 * `GET /readyz` used by Kubernetes readiness probe
@@ -41,8 +41,8 @@ Web API:
 * `GET /env` returns the environment variables as a JSON array
 * `GET /headers` returns a JSON with the request HTTP headers
 * `GET /delay/{seconds}` waits for the specified period
-* `POST /token` issues a JWT token valid for one minute `JWT=$(curl -sd 'anon' podinfo:9898/token | jq -r .token)`
-* `GET /token/validate` validates the JWT token `curl -H "Authorization: Bearer $JWT" podinfo:9898/token/validate`
+* `POST /token` issues a JWT token valid for one minute `JWT=$(curl -sd 'anon' microservice-template:9898/token | jq -r .token)`
+* `GET /token/validate` validates the JWT token `curl -H "Authorization: Bearer $JWT" microservice-template:9898/token/validate`
 * `GET /configs` returns a JSON with configmaps and/or secrets mounted in the `config` volume
 * `POST/PUT /cache/{key}` saves the posted content to Redis
 * `GET /cache/{key}` returns the content from Redis if the key exists
@@ -59,9 +59,9 @@ gRPC API:
 
 Web UI:
 
-![podinfo-ui](https://raw.githubusercontent.com/Supesharisuto/podinfo/gh-pages/screens/podinfo-ui-v3.png)
+![microservice-template-ui](https://raw.githubusercontent.com/Supesharisuto/microservice-template/gh-pages/screens/microservice-template-ui-v3.png)
 
-To access the Swagger UI open `<podinfo-host>/swagger/index.html` in a browser.
+To access the Swagger UI open `<microservice-template-host>/swagger/index.html` in a browser.
 
 ### Guides
 
@@ -78,13 +78,13 @@ To access the Swagger UI open `<podinfo-host>/swagger/index.html` in a browser.
 Helm:
 
 ```bash
-helm repo add podinfo https://Supesharisuto.github.io/podinfo
+helm repo add microservice-template https://Supesharisuto.github.io/microservice-template
 
 helm upgrade --install --wait frontend \
 --namespace test \
 --set replicaCount=2 \
---set backend=http://backend-podinfo:9898/echo \
-podinfo/podinfo
+--set backend=http://backend-microservice-template:9898/echo \
+microservice-template/microservice-template
 
 # Test pods have hook-delete-policy: hook-succeeded
 helm test frontend
@@ -92,17 +92,17 @@ helm test frontend
 helm upgrade --install --wait backend \
 --namespace test \
 --set hpa.enabled=true \
-podinfo/podinfo
+microservice-template/microservice-template
 ```
 
 Kustomize:
 
 ```bash
-kubectl apply -k github.com/Supesharisuto/podinfo//kustomize
+kubectl apply -k github.com/Supesharisuto/microservice-template//kustomize
 ```
 
 Docker:
 
 ```bash
-docker run -dp 9898:9898 Supesharisuto/podinfo
+docker run -dp 9898:9898 Supesharisuto/microservice-template
 ```

@@ -14,10 +14,10 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/Supesharisuto/podinfo/pkg/api"
-	"github.com/Supesharisuto/podinfo/pkg/grpc"
-	"github.com/Supesharisuto/podinfo/pkg/signals"
-	"github.com/Supesharisuto/podinfo/pkg/version"
+	"github.com/Supesharisuto/microservice-template/pkg/api"
+	"github.com/Supesharisuto/microservice-template/pkg/grpc"
+	"github.com/Supesharisuto/microservice-template/pkg/signals"
+	"github.com/Supesharisuto/microservice-template/pkg/version"
 )
 
 func main() {

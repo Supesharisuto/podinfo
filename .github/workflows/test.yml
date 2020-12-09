@@ -34,7 +34,7 @@ jobs:
         uses: Supesharisuto/kube-tools@v1
         with:
           command: |
-            helmv3 template ./charts/podinfo | kubeval --strict
+            helmv3 template ./charts/microservice-template | kubeval --strict
       - name: Validate kustomization
         uses: Supesharisuto/kube-tools@v1
         with:
